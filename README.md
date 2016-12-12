@@ -1,25 +1,25 @@
-# X-Helg geocaching adventskalender statistikk
-Statistikk for geocachings-adventskalender. Laget for X-Helg på Helgeland, men kan sikkert også brukes av andre. Første iterasjon skrevet i PowerShell.
+# X-Helg geocaching Advent calendar statistics
+Statistics for a geocaching Advent calendar. Made for the geocaching community in Helgeland, Norway for the X-Helg Advent calendar, but probably useful elsewhere too. First iteration written in PowerShell 5.0.
 
-# Bruk
-Skriptet er skrevet i PowerShell, og benytter SQLite for .NET bibliotek for å aksessere en SQLite-database. Databasen er laget i GSAK.
+# Usage
+The script is written in PowerShell, and connects to a SQLite database using a SQLite for .Net library. Database is generated using GSAK.
 
-Man oppretter databasen i GSAK, og legger inn alle cacher i kalenderen. Deretter laster man ned alle logger. Med dette er databasen klar for bruk.
+First create an empty GSAK database, and import all caches from the Advent calendar. Using a geocaching bookmark-list can help with this. Once in GSAK, download all logs for the caches. This makes the database ready for use.
 
-Skriptet har en seksjon øverst som gjør en dataprep:
+The top section of the script does a dataprep of the database:
 
-1. Lager poeng-tabell (med drop if exists), legger inn alle som har logget hittil.
-2. Lager en FTF-tabell (med drop if exists), finner og legger til alle FTF'er. Dette er basert på at loggen inneholder den "anerkjente" FTF-koden {\*FTF\*}.
-3. Gjør en update for hver cache i kalenderen; endrer placeddate til aktuell dag (1-24 des) og setter User4 feltet til et kortnavn [#n] der n er aktuell dag, 1-24.
+1. Create (with drop if existes) a points table, create a row for each nickname.
+2. Create (with drop if exists) a first-to-find (ftf) table, selects and adds all FTF logs, based on logs containing the "well-known" FTF code "FTF in asterisks and curly braces": {\*FTF\*}.
+3. Updates each cache in the calendar: sets the correct placeddate (Dec. 1-24) and uses the User4 field to store a short-code for each cache; [#n] where n is the day of Advent 1-24.
 
-Deretter henter skriptet ut logger og tildeler poeng etter følgende kriterier:
-- Funn i Desember gir 1 poeng.
-- Funn på publiseringsdato gir 2 poeng.
-- FTF gir 3 poeng.
-- "Co-FTF", dvs flere logger sammen, gir 2 poeng til hver.
-- Egen publisering gir 3 poeng.
+Then we get all logs and give points based on these rules:
+- Logged find in December equals 1 point.
+- Logged find on the same date as the cache was published is 2 points.
+- First to find is 3 points.
+- "Co-FTF", ie more than one cacher logs a FTF, is 2 points each.
+- Publishing a listing of your own is 3 points.
 
-Til slutt lagres data i en CSV-fil. Man kan så benytte Excel til å lage en "pen" rapport, se vedlagt eksempel.
+The points-table is generated with short-codes and poinsts and stored in a CSV file. You can then use Excel to create a "pretty" report, see example.
 
 TODO:
 - Vil ha en HTML rapport som kan publiseres rett på nettside.
