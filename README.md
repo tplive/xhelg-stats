@@ -1,5 +1,10 @@
 # X-Helg geocaching Advent calendar statistics
-Statistics for a geocaching Advent calendar. Made for the geocaching community in Helgeland, Norway for the X-Helg Advent calendar, but probably useful elsewhere too. First iteration written in PowerShell 5.0.
+Statistics for a geocaching Advent calendar. Made for the geocaching community in Helgeland, Norway for the X-Helg Advent calendar, but probably useful elsewhere too. First iteration written in PowerShell.
+
+# Versions
+PowerShell 5.0
+GSAK 8.6.0
+SQLite for .NET 1.0.103.0 (Tested version for .NET 4.6 64-bit: sqlite-netFx46-setup-bundle-x64-2015-1.0.103.0.exe)
 
 # Usage
 The script is written in PowerShell, and connects to a SQLite database using a SQLite for .Net library. Database is generated using GSAK.
