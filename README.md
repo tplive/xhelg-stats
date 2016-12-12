@@ -27,6 +27,6 @@ Then we get all logs and give points based on these rules:
 The points-table is generated with short-codes and poinsts and stored in a CSV file. You can then use Excel to create a "pretty" report, see example.
 
 TODO:
-- Vil ha en HTML rapport som kan publiseres rett på nettside.
-- Vil ha en dynamisk, sorterbar rapport, med link på hver cache og cacher.
-- Vil se om Project GC har noe som kan benyttes.
+- Want HTML report to publish online.
+- Want dynamic, sortable report, linked to each cache and geocacher.
+- Want to see if Project GC has anything, or can make anything for this purpose.
