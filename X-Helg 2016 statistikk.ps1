@@ -94,6 +94,10 @@ update caches set placeddate = "2016-12-21", User4 = "[#21]" where code = "GC6XC
 update caches set placeddate = "2016-12-22", User4 = "[#22]" where code = "GC6XC7X";
 update caches set placeddate = "2016-12-23", User4 = "[#23]" where code = "";
 update caches set placeddate = "2016-12-24", User4 = "[#24]" where code = "GC6XBE2";
+
+--Andre manuelle triks
+update logs set ldate = "2016-12-10" where lparent = "GC6WW07" and lby = "silyam";
+
 '@
 
 QuerySQLite -query $sqlDataPrep | Out-Null

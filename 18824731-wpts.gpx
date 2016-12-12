@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gpx xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" creator="Groundspeak, Inc. All Rights Reserved. http://www.groundspeak.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd http://www.groundspeak.com/cache/1/0 http://www.groundspeak.com/cache/1/0/cache.xsd" xmlns="http://www.topografix.com/GPX/1/0">
+  <name>Waypoints for Cache Listings Generated from Geocaching.com</name>
+  <desc>This is a list of supporting waypoints for caches generated from Geocaching.com</desc>
+  <author>Various users from Geocaching.com</author>
+  <email>contact@geocaching.com</email>
+  <url>http://www.geocaching.com</url>
+  <urlname>Geocaching - High Tech Treasure Hunting</urlname>
+  <time>2016-12-12T11:59:47.2743564Z</time>
+  <keywords>cache, geocache, waypoints</keywords>
+  <bounds minlat="66.221133" minlon="12.578817" maxlat="66.335317" maxlon="14.1505" />
+  <wpt lat="66.335317" lon="14.1505">
+    <time>2016-11-13T09:20:31.097</time>
+    <name>FN6WYJF</name>
+    <cmt />
+    <desc>Final Location</desc>
+    <url>http://www.geocaching.com/seek/wpt.aspx?WID=18ae9090-fb78-49fb-8909-b3802afed9b0</url>
+    <urlname>Final Location</urlname>
+    <sym>Final Location</sym>
+    <type>Waypoint|Final Location</type>
+  </wpt>
+  <wpt lat="66.221133" lon="12.578817">
+    <time>2016-11-23T09:25:04.387</time>
+    <name>P06XC4N</name>
+    <cmt />
+    <desc>Parkering</desc>
+    <url>http://www.geocaching.com/seek/wpt.aspx?WID=c5dd8fd1-e459-437f-943c-19b2fdd5a17d</url>
+    <urlname>Parkering</urlname>
+    <sym>Parking Area</sym>
+    <type>Waypoint|Parking Area</type>
+  </wpt>
+</gpx>
