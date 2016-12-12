@@ -1,6 +1,13 @@
 ﻿add-type -Path 'C:\Program Files\System.Data.SQLite\2015\bin\System.Data.SQLite.dll'
 
+# Get copy of GSAK database to avoid locking issues
+Copy-Item "C:\Users\Thomas\AppData\Roaming\gsak\data\X-Helg 2016\sqlite.db3" "C:\Users\Thomas\xhelg-stats"
+
 $connectionString = "Data Source=C:\Users\Thomas\AppData\Roaming\gsak\data\X-Helg 2016\sqlite.db3"
+function DatabaseConn ($connectionString) {
+
+    return $connection
+}
 
 function QuerySQLite ($query) {
 
@@ -177,7 +184,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
 
 $poeng = QuerySQLite -query 'select lBy as Nick, c_publ_selv as [Publisert selv], c_ftf as [FTF], c_funn_publ_dato as [Funn på publ dato], c_funn_desember as[Funn i Desember], total as [Total] from poeng order by total desc;'
 $poeng.tables.rows | Out-GridView
-$outcsv = "C:\Users\Thomas\OneDrive\Geocaching\X-Helg 2016 Statistikk.csv"
+$outcsv = "C:\Users\Thomas\xhelg-stats\X-Helg 2016 Statistikk.csv"
 if (Test-Path $outcsv) {Remove-Item $outcsv}
 $poeng.tables.rows | Export-csv -LiteralPath $outcsv -NoTypeInformation -NoClobber -Encoding Unicode
 
