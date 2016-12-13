@@ -96,7 +96,24 @@ update caches set placeddate = "2016-12-23", User4 = "[#23]" where code = "";
 update caches set placeddate = "2016-12-24", User4 = "[#24]" where code = "GC6XBE2";
 
 --Andre manuelle triks
-update logs set ldate = "2016-12-10" where lparent = "GC6WW07" and lby = "silyam" and lType="Found it";
+--Noen logger må flyttes
+--#1
+update logs set ldate = "2016-12-01" where lparent = "GC6WN01" and lby IN ("dogteam", "cara2006", "O-K Haukland") and lType="Found it";
+--#3
+update logs set ldate = "2016-12-03" where lparent = "GC6WVNR" and lby IN ("dogteam", "cara2006") and lType="Found it";
+--#4
+update logs set ldate = "2016-12-04" where lparent = "GC6WYJF" and lby IN ("cara2006") and lType="Found it";
+
+--#5
+update logs set ldate = "2016-12-05" where lparent = "GC6WQ2M" and lby IN ("dogteam", "cara2006") and lType="Found it";
+--#6
+update logs set ldate = "2016-12-06" where lparent = "GC6WY6P" and lby IN ("dogteam") and lType="Found it";
+--#7
+update logs set ldate = "2016-12-07" where lparent = "GC6WY6Z" and lby IN ("dogteam") and lType="Found it";
+--#9
+update logs set ldate = "2016-12-09" where lparent = "GC6X2AN" and lby IN ("dogteam", "minni09", "mirg75", "silyam") and lType="Found it";
+--#10
+update logs set ldate = "2016-12-10" where lparent = "GC6WW07" and lby IN ("silyam", "dogteam") and lType="Found it";
 
 -- Luciaeventet var alle på samme dag
 update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attended";
