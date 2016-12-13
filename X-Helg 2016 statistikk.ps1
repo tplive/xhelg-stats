@@ -64,7 +64,7 @@ update ftf set points = 2 where code in (select code from ftf group by code havi
 update ftf set points = 3 where code in (select code from ftf group by code having count(code) = 1);
 
 --Legg inn alle som har logget i poengtabellen
-insert into poeng select lBy, null, null, null, null, null, null, null, null, null, null, 0 from logs where lBy NOT IN ("Poltrona Polaris", "Hexa Nomos", "NonaNorwegianAdiutor", "Octa Ceres", "cervisvenator") group by lBy order by lBy;
+insert into poeng select lBy, null, null, null, null, null, null, null, null, null, null, 0 from logs where lType IN ("Found it", "Attended") and lBy NOT IN ("Poltrona Polaris", "Hexa Nomos", "NonaNorwegianAdiutor", "Octa Ceres", "cervisvenator") group by lBy order by lBy;
 
 --Legg inn alle som har lagt ut cacher i poengtabellen
 insert into poeng select placedby, null, null, null, null, null, null, null, null, null, null, 0 from caches where placedby not in (select lBy from poeng);
@@ -96,7 +96,11 @@ update caches set placeddate = "2016-12-23", User4 = "[#23]" where code = "";
 update caches set placeddate = "2016-12-24", User4 = "[#24]" where code = "GC6XBE2";
 
 --Andre manuelle triks
-update logs set ldate = "2016-12-10" where lparent = "GC6WW07" and lby = "silyam";
+update logs set ldate = "2016-12-10" where lparent = "GC6WW07" and lby = "silyam" and lType="Found it";
+
+-- Luciaeventet var alle på samme dag
+update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attended";
+
 
 '@
 
@@ -104,13 +108,13 @@ QuerySQLite -query $sqlDataPrep | Out-Null
 
 
 # Her begynner vi med utgangspunkt i alle deltagere = alle som har logget hittil i Desember
-$sqlAlleDeltagere = 'select * from poeng;'
+$sqlAlleDeltagere = "select * from poeng;"
 $resAlleDeltagere = QuerySQLite -query $sqlAlleDeltagere
 
 foreach ($deltager in $resAlleDeltagere.tables.rows) {
 
 # Finn cacher Deltager har logget i Desember, legg til User4 for disse i poeng, og regn ut antall poeng
-    $sqlDeltagerHarLogget = "select c.User4 from logs l inner join caches c on l.lParent = c.code where l.lBy = '" + $deltager.lBy + "' and lDate between '2016-12-01' AND '2016-12-31' and lDate != c.placeddate order by l.lDate;"
+    $sqlDeltagerHarLogget = "select c.User4 from logs l inner join caches c on l.lParent = c.code where l.lType='Found it' and l.lBy = '" + $deltager.lBy + "' and lDate between '2016-12-01' AND '2016-12-31' and lDate != c.placeddate order by l.lDate;"
     $resDeltagerHarLogget = QuerySQLite -query $sqlDeltagerHarLogget
 
     foreach ($c in $resDeltagerHarLogget.tables.rows) {
@@ -125,7 +129,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
     Clear-Variable points
     
 # Finn cacher Deltager har logget på publiseringsdato, legg til User4 og antall poeng
-    $sqlLoggetPublDato= 'select c.User4 from logs l inner join caches c on l.lParent = c.code where l.lBy = "' + $deltager.lBy + '" and l.lDate = c.placeddate order by l.lDate;'
+    $sqlLoggetPublDato= 'select c.User4 from logs l inner join caches c on l.lParent = c.code where l.lType in ("Attended", "Found it") and l.lBy = "' + $deltager.lBy + '" and l.lDate = c.placeddate order by l.lDate;'
     $resLoggetPublDato = QuerySQLite -query $sqlLoggetPublDato
 
     foreach ($c in $resLoggetPublDato.tables.rows) {
