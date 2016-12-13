@@ -1,0 +1,12 @@
+#*******************************************
+# MacVersion = 1.0
+# MacDescription = New macro
+# MacAuthor = thpa
+# MacFileName = New macro.gsk
+# MacUrl =
+#*******************************************
+DEBUG STATUS=on
+SHOWSTOP
+DATABASE Name="X-Helg 2016" Action=Select
+GcGetLogs Scope=Current Type=Newer LogsPerCache=30 ShowSummary=Y
+
