@@ -122,7 +122,7 @@ update logs set ldate = "2016-12-14" where lparent = "GC6X33Q" and lby IN ("O-K 
 
 
 --#15
-update logs set ldate = "2016-12-15" where lparent = "GC6X260" and lby IN ("dogteam") and lType="Found it";
+update logs set ldate = "2016-12-15" where lparent = "GC6X260" and lby IN ("dogteam", "cara2006") and lType="Found it";
 
 '@
 
