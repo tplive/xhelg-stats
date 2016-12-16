@@ -121,8 +121,6 @@ update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attend
 update logs set ldate = "2016-12-14" where lparent = "GC6X33Q" and lby IN ("O-K Haukland") and lType="Found it";
 --#15
 update logs set ldate = "2016-12-15" where lparent = "GC6X260" and lby IN ("dogteam", "cara2006") and lType="Found it";
---#16
-update logs set ldate = "2016-12-16" where lparent = "GC6X260" and lby IN ("dogteam", "cara2006") and lType="Found it";
 
 '@
 
