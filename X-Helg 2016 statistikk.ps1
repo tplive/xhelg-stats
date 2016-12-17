@@ -50,7 +50,7 @@ function SelectSQLite ($query, $connectionString) {
 $sqlDataPrep = @'
 -- Lag tabell poeng
 drop table if exists poeng;
-create table poeng(lBy varchar(50), publ_selv int, c_publ_selv varchar(200), ftf int, c_ftf varchar(200), delt_ftf int, c_delt_ftf varchar(200), funn_publ_dato int, c_funn_publ_dato varchar(200), funn_desember int, c_funn_desember varchar(200), total int);
+create table poeng(rank int, lBy varchar(50), publ_selv int, c_publ_selv varchar(200), ftf int, c_ftf varchar(200), delt_ftf int, c_delt_ftf varchar(200), funn_publ_dato int, c_funn_publ_dato varchar(200), funn_desember int, c_funn_desember varchar(200), total int);
 
 --Lag tabell ftf
 drop table if exists ftf; 
@@ -121,6 +121,8 @@ update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attend
 update logs set ldate = "2016-12-14" where lparent = "GC6X33Q" and lby IN ("O-K Haukland") and lType="Found it";
 --#15
 update logs set ldate = "2016-12-15" where lparent = "GC6X260" and lby IN ("dogteam", "cara2006") and lType="Found it";
+--#16
+update logs set ldate = "2016-12-15" where lparent = "GC6X7RN" and lby IN ("cara2006") and lType="Found it";
 
 '@
 
@@ -177,10 +179,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
         QuerySQLite -query $queryresult | Out-Null
     }
     $caches = ""
-    Clear-Variable points  
-
-# OK så langt
-
+    Clear-Variable points
 
 # Finn cacher Deltager har logget FTF på, og legg til * og redusert antall poeng på co-FTF
 
@@ -207,6 +206,22 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
     $caches = ""
     Clear-Variable points  
 
+
+}
+
+# TODO Beregn ranking og legg inn i poengbasen
+
+$sqlPoeng = "select total from poeng;"
+$resPoeng = QuerySQLite -query $sqlPoeng
+$thisPoeng = 0
+$nextPoeng = 0
+$thisRank = 1
+
+foreach ($c in $resPoeng) {
+    $thisPoeng = $c.total
+    $sqlUpdateRank = "update poeng set rank = " + $thisRank + " where total = " + $thisPoeng + ";"
+    $resUpdateRank = QuerySQLite -query $queryresult - Out-Null
+    
 
 }
 
