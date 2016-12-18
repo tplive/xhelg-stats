@@ -87,7 +87,7 @@ update caches set placeddate = "2016-12-14", User4 = "[#14]" where code = "GC6X3
 update caches set placeddate = "2016-12-15", User4 = "[#15]" where code = "GC6X260";
 update caches set placeddate = "2016-12-16", User4 = "[#16]" where code = "GC6X7RN";
 update caches set placeddate = "2016-12-17", User4 = "[#17]" where code = "GC6X841";
-update caches set placeddate = "2016-12-18", User4 = "[#18]" where code = "";
+update caches set placeddate = "2016-12-18", User4 = "[#18]" where code = "GC6XVEX";
 update caches set placeddate = "2016-12-19", User4 = "[#19]" where code = "GC6WWW8";
 update caches set placeddate = "2016-12-20", User4 = "[#20]" where code = "";
 update caches set placeddate = "2016-12-21", User4 = "[#21]" where code = "GC6XC5J";
@@ -232,7 +232,8 @@ $poeng.tables.rows | Out-GridView
 $outcsv = "C:\Users\Thomas\xhelg-stats\X-Helg 2016 Statistikk.csv"
 if (Test-Path $outcsv) {Remove-Item $outcsv}
 $poeng.tables.rows | Export-csv -LiteralPath $outcsv -NoTypeInformation -NoClobber -Encoding Unicode
-
+$totalLogs = QuerySQLite -query "select count(*) AS [Ant logger] from logs where ltype in ('Found it', 'Attended')"
+$totalLogs.tables.rows
 
 # Lage HTML side av dataene
 #$poeng.tables.rows
