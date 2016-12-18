@@ -50,7 +50,7 @@ function SelectSQLite ($query, $connectionString) {
 $sqlDataPrep = @'
 -- Lag tabell poeng
 drop table if exists poeng;
-create table poeng(rank int, lBy varchar(50), publ_selv int, c_publ_selv varchar(200), ftf int, c_ftf varchar(200), delt_ftf int, c_delt_ftf varchar(200), funn_publ_dato int, c_funn_publ_dato varchar(200), funn_desember int, c_funn_desember varchar(200), total int);
+create table poeng(lBy varchar(50), publ_selv int, c_publ_selv varchar(200), ftf int, c_ftf varchar(200), delt_ftf int, c_delt_ftf varchar(200), funn_publ_dato int, c_funn_publ_dato varchar(200), funn_desember int, c_funn_desember varchar(200), total int, rank int);
 
 --Lag tabell ftf
 drop table if exists ftf; 
@@ -64,10 +64,10 @@ update ftf set points = 2 where code in (select code from ftf group by code havi
 update ftf set points = 3 where code in (select code from ftf group by code having count(code) = 1);
 
 --Legg inn alle som har logget i poengtabellen
-insert into poeng select lBy, null, null, null, null, null, null, null, null, null, null, 0 from logs where lType IN ("Found it", "Attended") and lBy NOT IN ("Poltrona Polaris", "Hexa Nomos", "NonaNorwegianAdiutor", "Octa Ceres", "cervisvenator") group by lBy order by lBy;
+insert into poeng select lBy, null, null, null, null, null, null, null, null, null, null, 0, 0 from logs where lType IN ("Found it", "Attended") and lBy NOT IN ("Poltrona Polaris", "Hexa Nomos", "NonaNorwegianAdiutor", "Octa Ceres", "cervisvenator") group by lBy order by lBy;
 
 --Legg inn alle som har lagt ut cacher i poengtabellen
-insert into poeng select placedby, null, null, null, null, null, null, null, null, null, null, 0 from caches where placedby not in (select lBy from poeng);
+insert into poeng select placedby, null, null, null, null, null, null, null, null, null, null, 0, 0 from caches where placedby not in (select lBy from poeng);
 
 --Sett korrekt placeddate og lag nytt smartname på cachene
 update caches set placeddate = "2016-12-01", User4 = "[#1]" where code = "GC6WN01";
@@ -130,7 +130,7 @@ QuerySQLite -query $sqlDataPrep | Out-Null
 
 
 # Her begynner vi med utgangspunkt i alle deltagere = alle som har logget hittil i Desember
-$sqlAlleDeltagere = "select * from poeng;"
+$sqlAlleDeltagere = "select lBy from poeng;"
 $resAlleDeltagere = QuerySQLite -query $sqlAlleDeltagere
 
 foreach ($deltager in $resAlleDeltagere.tables.rows) {
@@ -211,21 +211,23 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
 
 # TODO Beregn ranking og legg inn i poengbasen
 
-$sqlPoeng = "select total from poeng;"
+$sqlPoeng = "select total from poeng order by total desc;"
 $resPoeng = QuerySQLite -query $sqlPoeng
-$thisPoeng = 0
-$nextPoeng = 0
+$tempPoeng = 0
 $thisRank = 1
 
-foreach ($c in $resPoeng) {
-    $thisPoeng = $c.total
-    $sqlUpdateRank = "update poeng set rank = " + $thisRank + " where total = " + $thisPoeng + ";"
-    $resUpdateRank = QuerySQLite -query $queryresult - Out-Null
+foreach ($c in $resPoeng.tables.rows) {
     
+    if ($tempPoeng -gt $c.total) {
+        $thisRank++
+    }
 
+    $sqlUpdateRank = "update poeng set rank = " + $thisRank + " where total = " + $c.total + ";"
+    $resUpdateRank = QuerySQLite -query $sqlUpdateRank - Out-Null
+    $tempPoeng = $c.total
 }
 
-$poeng = QuerySQLite -query 'select lBy as Nick, c_publ_selv as [Publisert selv], c_ftf as [FTF], c_funn_publ_dato as [Funn på publ dato], c_funn_desember as[Funn i Desember], total as [Total] from poeng order by total desc;'
+$poeng = QuerySQLite -query "select rank as [Plass], lBy as [Nick], c_publ_selv as [Publisert selv], c_ftf as [FTF], c_funn_publ_dato as [Funn på publ dato], c_funn_desember as[Funn i Desember], total as [Total] from poeng order by total desc;"
 $poeng.tables.rows | Out-GridView
 $outcsv = "C:\Users\Thomas\xhelg-stats\X-Helg 2016 Statistikk.csv"
 if (Test-Path $outcsv) {Remove-Item $outcsv}
