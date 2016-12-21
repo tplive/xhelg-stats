@@ -1,0 +1,104 @@
+#*******************************************
+# MacVersion = 1.03
+# MacDescription = Logs with picture stats
+# MacAuthor = sbeelis
+# MacFileName = FotoAndLogLengthStats.gsk
+# MacUrl =
+#*******************************************
+#
+# version history
+# 1.02  2011-12-24  first version
+# 1.03  2012-02-08  fixed division by zero bug
+#
+#*******************************************
+
+Option Explicit=Yes
+
+Declare Var=$avg Type=Numeric
+Declare Var=$Count Type=Numeric
+Declare Var=$data Type=String
+Declare Var=$MaxWord Type=Numeric
+Declare Var=$message Type=String
+Declare Var=$SumFoto Type=Numeric
+Declare Var=$summary Type=Boolean
+Declare Var=$SumWord Type=Numeric
+Declare Var=$type Type=String
+Declare Var=$Words Type=Numeric
+
+
+$summary = FALSE
+IF $_ShiftKey
+  $summary = TRUE
+ENDIF
+
+$data = CustomConfig("Get","LogLength")
+IF $data <> ""
+  $type = CsvGet($data, "2")
+  IF ($type <> "string")
+    $data = CustomConfig("Delete", "LogLength")
+    $data = CustomConfig("Add", "LogLength,string,local,,,Standard")
+  ENDIF
+ELSE
+  $data = CustomConfig("Add", "LogLength,string,local,,,Standard")
+ENDIF
+
+$data = CustomConfig("Get","FotoCount")
+IF $data <> ""
+  $type = CsvGet($data, "2")
+  IF ($type <> "string")
+    $data = CustomConfig("Delete", "FotoCount")
+    $data = CustomConfig("Add", "FotoCount,string,local,,,Standard")
+  ENDIF
+ELSE
+  $data = CustomConfig("Add", "FotoCount,string,local,,,Standard")
+ENDIF
+
+Transaction Action=Begin
+
+GOTO Position=Top
+$MaxWord = 0
+$SumWord = 0
+$SumFoto = 0
+$Count = 0
+WHILE Not($_EOL)
+  IF $d_Found
+    SHOWSTATUS msg="Treating $d_code" top=10 Left=10
+    $_sql="select count(*) from LogImages, LogsAll where lparent=iCode and llogid = ilogid and g_foundlog(ltype) and lisowner and lParent='$d_code'"
+    $Data=Sqlite("sql",$_sql)
+    $SumFoto = $SumFoto + Val($Data)
+    $data = CustomPut("FotoCount", Str(Val($Data),10,0))
+
+    $_sql="Select lText from LogsAll where g_foundlog(ltype) AND  lIsowner and lParent='$d_code'"
+    $Data=Sqlite("sql",$_sql)
+    $Words=Int((RegExCount(".\b",$Data)+1)/2)
+    $SumWord = $SumWord + $Words
+    IF $Words > $MaxWord
+      $MaxWord = $Words
+    ENDIF
+    $data = CustomPut("LogLength", Str($Words,10,0))
+
+    $Count = $Count + 1
+  ELSE
+    $data = CustomPut("FotoCount", "")
+    $data = CustomPut("LogLength", "")
+  ENDIF
+  GOTO Position=Next
+ENDWHILE
+Transaction Action=End
+
+GOTO Position=Top
+
+SHOWSTATUS msg="Done" top=10 Left=10
+
+IF $summary
+  IF ($count > 0)
+    $avg = Int($SumWord / $Count)
+  ELSE
+    $avg = 0
+  ENDIF
+  $message = "$SumFoto photos found in logs." + $_CrLf
+  $message = $message + "$SumWord total words in $Count logs." + $_CrLf
+  $message = $message + "Longest log: $MaxWord words." + $_CrLf
+  $message = $message + "Average length: $avg words."
+  MsgOk Msg=$message Caption="Photo and log count results"
+ENDIF
