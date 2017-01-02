@@ -61,17 +61,17 @@ insert into ftf select l.lBy, l.lParent, 0 from Logs l inner join logmemo lm on 
 
 --Legg inn alle FTF'er som ikke er brukt rett kode på.. >:-O
 --#2
-insert into ftf (lby, code) values ('O-K Haukland', 'GC6WRPD');
-insert into ftf (lby, code) values ('annesto', 'GC6WRPD');
-insert into ftf (lby, code) values ('dogteam', 'GC6WRPD');
+insert into ftf (lby, code, points) values ('O-K Haukland', 'GC6WRPD', 0);
+insert into ftf (lby, code, points) values ('annesto', 'GC6WRPD', 0);
+insert into ftf (lby, code, points) values ('dogteam', 'GC6WRPD', 0);
 --#4
-insert into ftf (lby, code) values ('dogteam', 'GC6WYJF');
+insert into ftf (lby, code, points) values ('dogteam', 'GC6WYJF', 0);
 --#17
-insert into ftf (lby, code) values ('Team Skartun', 'GC6X841');
+insert into ftf (lby, code, points) values ('Team Skartun', 'GC6X841', 0);
 --#18
-insert into ftf (lby, code) values ('skogmal', 'GC6XVEX');
+insert into ftf (lby, code, points) values ('skogmal', 'GC6XVEX', 0);
 --#23
-insert into ftf (lby, code) values ('sømna', 'GC6XVD3');
+insert into ftf (lby, code, points) values ('sømna', 'GC6XVD3', 0);
 
 
 
