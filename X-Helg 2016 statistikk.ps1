@@ -59,6 +59,22 @@ create table ftf (lBy varchar(50), code varchar(50), points int);
 --Legg inn alle logger som inneholder {*FTF*} i ftf tabellen
 insert into ftf select l.lBy, l.lParent, 0 from Logs l inner join logmemo lm on l.lLogId = lm.lLogId where lText like "%{*FTF*}%";
 
+--Legg inn alle FTF'er som ikke er brukt rett kode på.. >:-O
+--#2
+insert into ftf (lby, code) values ('O-K Haukland', 'GC6WRPD')
+insert into ftf (lby, code) values ('annesto', 'GC6WRPD')
+insert into ftf (lby, code) values ('dogteam', 'GC6WRPD')
+--#4
+insert into ftf (lby, code) values ('dogteam', 'GC6WYJF')
+--#17
+insert into ftf (lby, code) values ('Team Skartun', 'GC6X841')
+--#18
+insert into ftf (lby, code) values ('skogmal', 'GC6XVEX')
+--#23
+insert into ftf (lby, code) values ('sømna', 'GC6XVD3')
+
+
+
 -- Gi poeng til FTF og Co-FTF
 update ftf set points = 2 where code in (select code from ftf group by code having count(code) > 1);
 update ftf set points = 3 where code in (select code from ftf group by code having count(code) = 1);
@@ -92,7 +108,7 @@ update caches set placeddate = "2016-12-19", User4 = "[#19]" where code = "GC6WW
 update caches set placeddate = "2016-12-20", User4 = "[#20]" where code = "";
 update caches set placeddate = "2016-12-21", User4 = "[#21]" where code = "GC6XC5J";
 update caches set placeddate = "2016-12-22", User4 = "[#22]" where code = "GC6XC7X";
-update caches set placeddate = "2016-12-23", User4 = "[#23]" where code = "";
+update caches set placeddate = "2016-12-23", User4 = "[#23]" where code = "GC6XVD3";
 update caches set placeddate = "2016-12-24", User4 = "[#24]" where code = "GC6XBE2";
 
 --Andre manuelle triks
