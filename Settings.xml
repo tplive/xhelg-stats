@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Settings>
+    <Configuration>
+        <SQLiteLibLoc>C:\Program Files\System.Data.SQLite\2005\bin\System.Data.SQLite.dll</SQLiteLibLoc>
+        <outputCSVFileLoc>.\X-Helg_2017_statistikk.csv</outputCSVFileLoc>
+        <sqlitedbsrc>C:\Users\thpa\AppData\Roaming\gsak\data\xhelg\sqlite.db3</sqlitedbsrc>
+        <sqlitedbcopy>C:\Code\xhelg-stats</sqlitedbcopy>
+    </Configuration>
+</Settings>

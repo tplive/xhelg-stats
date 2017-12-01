@@ -1,13 +1,20 @@
-﻿add-type -Path 'C:\Program Files\System.Data.SQLite\2015\bin\System.Data.SQLite.dll'
+﻿
+
+# Import email settings from config file
+[xml]$ConfigFile = Get-Content ".\Settings.xml"
+
+add-type -Path $ConfigFile.Settings.Configuration.SQLiteLibLoc
 
 # Init vars
-$outcsv = "C:\Users\Thomas\xhelg-stats\X-Helg 2016 Statistikk.csv"
+$outcsv = $ConfigFile.Settings.Configuration.outputCSVFileLoc
 
+$sqlitedbsrc = $ConfigFile.Settings.Configuration.sqlitedbsrc
+$sqlitedbcopy = $ConfigFile.Settings.Configuration.sqlitedbcopy
 
 # Get copy of GSAK database to avoid locking issues
-Copy-Item "C:\Users\Thomas\AppData\Roaming\gsak\data\X-Helg 2016\sqlite.db3" "C:\Users\Thomas\xhelg-stats"
+Copy-Item -Path $sqlitedbsrc -Destination $sqlitedbcopy
 
-$connectionString = "Data Source=C:\Users\Thomas\AppData\Roaming\gsak\data\X-Helg 2016\sqlite.db3"
+$connectionString = "Data Source=" + $sqlitedbcopy + "\sqlite.db3"
 function DatabaseConn ($connectionString) {
 
     return $connection
@@ -224,8 +231,9 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
         QuerySQLite -query $queryresult | Out-Null
     }
     $caches = ""
-    Clear-Variable points  
-
+    if ($points) {
+        Clear-Variable points  
+    }
 
 }
 
