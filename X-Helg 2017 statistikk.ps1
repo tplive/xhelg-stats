@@ -12,6 +12,7 @@ $sqlitedbsrc = $ConfigFile.Settings.Configuration.sqlitedbsrc
 $sqlitedbcopy = $ConfigFile.Settings.Configuration.sqlitedbcopy
 
 # Get copy of GSAK database to avoid locking issues
+Write-Information -MessageData "Copying database..."
 Copy-Item -Path $sqlitedbsrc -Destination $sqlitedbcopy
 
 $connectionString = "Data Source=" + $sqlitedbcopy + "\sqlite.db3"
@@ -97,30 +98,30 @@ insert into poeng select lBy, null, null, null, null, null, null, null, null, nu
 insert into poeng select placedby, null, null, null, null, null, null, null, null, null, null, 0, 0 from caches where placedby not in (select lBy from poeng);
 
 --Sett korrekt placeddate og lag nytt smartname på cachene
-update caches set placeddate = "2016-12-01", User4 = "[#1]" where code = "GC7E58G";
-update caches set placeddate = "2016-12-02", User4 = "[#2]" where code = "GC7ER9N";
-update caches set placeddate = "2016-12-03", User4 = "[#3]" where code = "GC7EKM1";
-update caches set placeddate = "2016-12-04", User4 = "[#4]" where code = "";
-update caches set placeddate = "2016-12-05", User4 = "[#5]" where code = "";
-update caches set placeddate = "2016-12-06", User4 = "[#6]" where code = "GC7EPYZ";
-update caches set placeddate = "2016-12-07", User4 = "[#7]" where code = "";
-update caches set placeddate = "2016-12-08", User4 = "[#8]" where code = "GC7F114";
-update caches set placeddate = "2016-12-09", User4 = "[#9]" where code = "GC7F6YH";
-update caches set placeddate = "2016-12-10", User4 = "[#10]" where code = "GC7ERHH";
-update caches set placeddate = "2016-12-11", User4 = "[#11]" where code = "GC7EZX3";
-update caches set placeddate = "2016-12-12", User4 = "[#12]" where code = "";
-update caches set placeddate = "2016-12-13", User4 = "[#13]" where code = "GC7EE2E";
-update caches set placeddate = "2016-12-14", User4 = "[#14]" where code = "GC7F2DB";
-update caches set placeddate = "2016-12-15", User4 = "[#15]" where code = "";
-update caches set placeddate = "2016-12-16", User4 = "[#16]" where code = "";
-update caches set placeddate = "2016-12-17", User4 = "[#17]" where code = "";
-update caches set placeddate = "2016-12-18", User4 = "[#18]" where code = "";
-update caches set placeddate = "2016-12-19", User4 = "[#19]" where code = "";
-update caches set placeddate = "2016-12-20", User4 = "[#20]" where code = "";
-update caches set placeddate = "2016-12-21", User4 = "[#21]" where code = "";
-update caches set placeddate = "2016-12-22", User4 = "[#22]" where code = "";
-update caches set placeddate = "2016-12-23", User4 = "[#23]" where code = "";
-update caches set placeddate = "2016-12-24", User4 = "[#24]" where code = "";
+update caches set placeddate = "2017-12-01", User4 = "[#1]" where code = "GC7E58G";
+update caches set placeddate = "2017-12-02", User4 = "[#2]" where code = "GC7ER9N";
+update caches set placeddate = "2017-12-03", User4 = "[#3]" where code = "GC7EKM1";
+update caches set placeddate = "2017-12-04", User4 = "[#4]" where code = "GC7FD4G";
+update caches set placeddate = "2017-12-05", User4 = "[#5]" where code = "GC7FD5P";
+update caches set placeddate = "2017-12-06", User4 = "[#6]" where code = "GC7EPYZ";
+update caches set placeddate = "2017-12-07", User4 = "[#7]" where code = "";
+update caches set placeddate = "2017-12-08", User4 = "[#8]" where code = "GC7F114";
+update caches set placeddate = "2017-12-09", User4 = "[#9]" where code = "GC7F6YH";
+update caches set placeddate = "2017-12-10", User4 = "[#10]" where code = "GC7ERHH";
+update caches set placeddate = "2017-12-11", User4 = "[#11]" where code = "GC7EZX3";
+update caches set placeddate = "2017-12-12", User4 = "[#12]" where code = "";
+update caches set placeddate = "2017-12-13", User4 = "[#13]" where code = "GC7EE2E";
+update caches set placeddate = "2017-12-14", User4 = "[#14]" where code = "GC7F2DB";
+update caches set placeddate = "2017-12-15", User4 = "[#15]" where code = "";
+update caches set placeddate = "2017-12-16", User4 = "[#16]" where code = "";
+update caches set placeddate = "2017-12-17", User4 = "[#17]" where code = "";
+update caches set placeddate = "2017-12-18", User4 = "[#18]" where code = "";
+update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = "";
+update caches set placeddate = "2017-12-20", User4 = "[#20]" where code = "";
+update caches set placeddate = "2017-12-21", User4 = "[#21]" where code = "";
+update caches set placeddate = "2017-12-22", User4 = "[#22]" where code = "";
+update caches set placeddate = "2017-12-23", User4 = "[#23]" where code = "";
+update caches set placeddate = "2017-12-24", User4 = "[#24]" where code = "";
 
 --Andre manuelle triks
 --Noen logger må flyttes
