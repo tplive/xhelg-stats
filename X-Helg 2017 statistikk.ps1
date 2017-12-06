@@ -263,7 +263,8 @@ if (Test-Path $outcsv) {Remove-Item $outcsv}
 $poeng.tables.rows | Export-csv -LiteralPath $outcsv -NoTypeInformation -NoClobber -Encoding Unicode
 $totalLogs = QuerySQLite -query "select count(*) AS [Ant logger] from logs where ltype in ('Found it', 'Attended')"
 $totalLogs.tables.rows
-
+$totalTeams = QuerySQLite -query "select count(*) AS [Ant team] from poeng"
+$totalTeams.tables
 # Lage HTML side av dataene
 #$poeng.tables.rows
 
