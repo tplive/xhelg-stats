@@ -3,7 +3,14 @@
     <Configuration>
         <SQLiteLibLoc>C:\Program Files\System.Data.SQLite\2005\bin\System.Data.SQLite.dll</SQLiteLibLoc>
         <outputCSVFileLoc>.\X-Helg_2017_statistikk.csv</outputCSVFileLoc>
+        <!-- ITOWXLA04
         <sqlitedbsrc>C:\Users\thpa\AppData\Roaming\gsak\data\xhelg\sqlite.db3</sqlitedbsrc>
         <sqlitedbcopy>C:\Code\xhelg-stats</sqlitedbcopy>
+        -->
+        <!-- SAURON-->
+        <sqlitedbsrc>C:\Users\Thomas\AppData\Roaming\gsak\data\xhelg2017\sqlite.db3</sqlitedbsrc>
+        <sqlitedbcopy>E:\Code\xhelg-stats</sqlitedbcopy>
+        
     </Configuration>
 </Settings>
+

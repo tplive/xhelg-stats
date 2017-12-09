@@ -126,7 +126,7 @@ update caches set placeddate = "2017-12-24", User4 = "[#24]" where code = "";
 --Andre manuelle triks
 --Noen logger må flyttes
 --#1
---update logs set ldate = "2016-12-01" where lparent = "GC6WN01" and lby IN ("dogteam", "cara2006", "O-K Haukland") and lType="Found it";
+update logs set ldate = "2017-12-01" where lparent = "GC7E58G" and lby IN ("silyam", "TeamLadybug<3<3", "O-K Haukland") and lType="Found it";
 --#3
 --update logs set ldate = "2016-12-03" where lparent = "GC6WVNR" and lby IN ("dogteam", "cara2006") and lType="Found it";
 --#4
