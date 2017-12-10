@@ -109,15 +109,15 @@ update caches set placeddate = "2017-12-08", User4 = "[#8]" where code = "GC7F11
 update caches set placeddate = "2017-12-09", User4 = "[#9]" where code = "GC7F6YH";
 update caches set placeddate = "2017-12-10", User4 = "[#10]" where code = "GC7ERHH";
 update caches set placeddate = "2017-12-11", User4 = "[#11]" where code = "GC7EZX3";
-update caches set placeddate = "2017-12-12", User4 = "[#12]" where code = "";
+update caches set placeddate = "2017-12-12", User4 = "[#12]" where code = ""; --SonjaJ
 update caches set placeddate = "2017-12-13", User4 = "[#13]" where code = "GC7EE2E";
 update caches set placeddate = "2017-12-14", User4 = "[#14]" where code = "GC7F2DB";
 update caches set placeddate = "2017-12-15", User4 = "[#15]" where code = "GC7FPE7";
-update caches set placeddate = "2017-12-16", User4 = "[#16]" where code = "";
-update caches set placeddate = "2017-12-17", User4 = "[#17]" where code = "";
-update caches set placeddate = "2017-12-18", User4 = "[#18]" where code = "";
-update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = "";
-update caches set placeddate = "2017-12-20", User4 = "[#20]" where code = "";
+update caches set placeddate = "2017-12-16", User4 = "[#16]" where code = "GC7FQA7";
+update caches set placeddate = "2017-12-17", User4 = "[#17]" where code = ""; --Team Hebbe
+update caches set placeddate = "2017-12-18", User4 = "[#18]" where code = "GC7EBA8";
+update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = ""; -- Joooliii
+update caches set placeddate = "2017-12-20", User4 = "[#20]" where code = "GC7F2MM";
 update caches set placeddate = "2017-12-21", User4 = "[#21]" where code = "GC7FPC4";
 update caches set placeddate = "2017-12-22", User4 = "[#22]" where code = "GC7FPA8";
 update caches set placeddate = "2017-12-23", User4 = "[#23]" where code = "GC7FNOT";
@@ -127,17 +127,21 @@ update caches set placeddate = "2017-12-24", User4 = "[#24]" where code = "GC7FP
 --Noen logger må flyttes
 --#1
 update logs set ldate = "2017-12-01" where lparent = "GC7E58G" and lby IN ("silyam", "TeamLadybug<3<3", "O-K Haukland") and lType="Found it";
+--#2
+update logs set ldate = "2017-12-02" where lparent = "GC7ER9N" and lby IN ("silyam", "johs1988", "cara2006") and lType="Found it";
 --#3
---update logs set ldate = "2016-12-03" where lparent = "GC6WVNR" and lby IN ("dogteam", "cara2006") and lType="Found it";
+update logs set ldate = "2017-12-03" where lparent = "GC7EKM1" and lby IN ("minni09", "O-K Haukland", "johs1988") and lType="Found it";
 --#4
 --update logs set ldate = "2016-12-04" where lparent = "GC6WYJF" and lby IN ("cara2006") and lType="Found it";
 
 --#5
---update logs set ldate = "2016-12-05" where lparent = "GC6WQ2M" and lby IN ("dogteam", "cara2006") and lType="Found it";
+update logs set ldate = "2017-12-05" where lparent = "GC7FD5P" and lby IN ("johs1988", "siljejandersen" ) and lType="Found it";
 --#6
---update logs set ldate = "2016-12-06" where lparent = "GC6WY6P" and lby IN ("dogteam") and lType="Found it";
+update logs set ldate = "2017-12-06" where lparent = "GC7EPYZ" and lby IN ("anila65", "siljejandersen", "johs1988", "silyam", "O-K Haukland", "minni09") and lType="Found it";
 --#7
 --update logs set ldate = "2016-12-07" where lparent = "GC6WY6Z" and lby IN ("dogteam") and lType="Found it";
+--#8
+update logs set ldate = "2017-12-08" where lparent = "GC7F114" and lby IN ("cara2006", "silyam") and lType="Found it";
 --#9
 --update logs set ldate = "2016-12-09" where lparent = "GC6X2AN" and lby IN ("dogteam", "minni09", "mirg75", "silyam") and lType="Found it";
 --#10
