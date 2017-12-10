@@ -112,7 +112,7 @@ update caches set placeddate = "2017-12-11", User4 = "[#11]" where code = "GC7EZ
 update caches set placeddate = "2017-12-12", User4 = "[#12]" where code = "";
 update caches set placeddate = "2017-12-13", User4 = "[#13]" where code = "GC7EE2E";
 update caches set placeddate = "2017-12-14", User4 = "[#14]" where code = "GC7F2DB";
-update caches set placeddate = "2017-12-15", User4 = "[#15]" where code = "";
+update caches set placeddate = "2017-12-15", User4 = "[#15]" where code = "GC7FPE7";
 update caches set placeddate = "2017-12-16", User4 = "[#16]" where code = "";
 update caches set placeddate = "2017-12-17", User4 = "[#17]" where code = "";
 update caches set placeddate = "2017-12-18", User4 = "[#18]" where code = "";
@@ -120,8 +120,8 @@ update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = "";
 update caches set placeddate = "2017-12-20", User4 = "[#20]" where code = "";
 update caches set placeddate = "2017-12-21", User4 = "[#21]" where code = "GC7FPC4";
 update caches set placeddate = "2017-12-22", User4 = "[#22]" where code = "GC7FPA8";
-update caches set placeddate = "2017-12-23", User4 = "[#23]" where code = "";
-update caches set placeddate = "2017-12-24", User4 = "[#24]" where code = "";
+update caches set placeddate = "2017-12-23", User4 = "[#23]" where code = "GC7FNOT";
+update caches set placeddate = "2017-12-24", User4 = "[#24]" where code = "GC7FP4B";
 
 --Andre manuelle triks
 --Noen logger må flyttes
