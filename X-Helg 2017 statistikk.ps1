@@ -109,14 +109,14 @@ update caches set placeddate = "2017-12-08", User4 = "[#8]" where code = "GC7F11
 update caches set placeddate = "2017-12-09", User4 = "[#9]" where code = "GC7F6YH";
 update caches set placeddate = "2017-12-10", User4 = "[#10]" where code = "GC7ERHH";
 update caches set placeddate = "2017-12-11", User4 = "[#11]" where code = "GC7EZX3";
-update caches set placeddate = "2017-12-12", User4 = "[#12]" where code = ""; --SonjaJ
+update caches set placeddate = "2017-12-12", User4 = "[#12]" where code = "GC7F8FE";
 update caches set placeddate = "2017-12-13", User4 = "[#13]" where code = "GC7EE2E";
 update caches set placeddate = "2017-12-14", User4 = "[#14]" where code = "GC7F2DB";
 update caches set placeddate = "2017-12-15", User4 = "[#15]" where code = "GC7FPE7";
 update caches set placeddate = "2017-12-16", User4 = "[#16]" where code = "GC7FQA7";
 update caches set placeddate = "2017-12-17", User4 = "[#17]" where code = ""; --Team Hebbe
 update caches set placeddate = "2017-12-18", User4 = "[#18]" where code = "GC7EBA8";
-update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = ""; -- Joooliii
+update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = "GC7FHYQ";
 update caches set placeddate = "2017-12-20", User4 = "[#20]" where code = "GC7F2MM";
 update caches set placeddate = "2017-12-21", User4 = "[#21]" where code = "GC7FPC4";
 update caches set placeddate = "2017-12-22", User4 = "[#22]" where code = "GC7FPA8";
@@ -157,6 +157,13 @@ update logs set ldate = "2017-12-08" where lparent = "GC7F114" and lby IN ("cara
 --update logs set ldate = "2016-12-15" where lparent = "GC6X7RN" and lby IN ("cara2006") and lType="Found it";
 
 '@
+
+$n = 0
+foreach ($c in $caches) {
+    $n++
+    if ($n -lt 10) {[String]$nStr = "0" + $n} 
+    $sqlDataPrep2 += 'update caches set placeddate = "2017-12-' + $nStr + '", User4 = "[#' + $n + ']" where code = "' + $c + '";'
+}
 
 QuerySQLite -query $sqlDataPrep | Out-Null
 
@@ -271,4 +278,4 @@ $totalTeams = QuerySQLite -query "select count(*) AS [Ant team] from poeng"
 $totalTeams.tables
 # Lage HTML side av dataene
 #$poeng.tables.rows
-
+# Import email settings from config file
