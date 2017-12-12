@@ -74,18 +74,6 @@ insert into ftf select l.lBy, l.lParent, 0 from Logs l inner join logmemo lm on 
 --Legg inn alle FTF'er som ikke er brukt rett kode på.. >:-O
 --#2
 --insert into ftf (lby, code, points) values ('O-K Haukland', 'GC6WRPD', 0);
---insert into ftf (lby, code, points) values ('annesto', 'GC6WRPD', 0);
---insert into ftf (lby, code, points) values ('dogteam', 'GC6WRPD', 0);
---#4
---insert into ftf (lby, code, points) values ('dogteam', 'GC6WYJF', 0);
---#17
---insert into ftf (lby, code, points) values ('Team Skartun', 'GC6X841', 0);
---#18
---insert into ftf (lby, code, points) values ('skogmal', 'GC6XVEX', 0);
---#23
---insert into ftf (lby, code, points) values ('sømna', 'GC6XVD3', 0);
-
-
 
 -- Gi poeng til FTF og Co-FTF
 update ftf set points = 2 where code in (select code from ftf group by code having count(code) > 1);
@@ -139,13 +127,12 @@ update logs set ldate = "2017-12-05" where lparent = "GC7FD5P" and lby IN ("johs
 --#6
 update logs set ldate = "2017-12-06" where lparent = "GC7EPYZ" and lby IN ("anila65", "siljejandersen", "johs1988", "silyam", "O-K Haukland", "minni09") and lType="Found it";
 --#7
---update logs set ldate = "2016-12-07" where lparent = "GC6WY6Z" and lby IN ("dogteam") and lType="Found it";
+
 --#8
 update logs set ldate = "2017-12-08" where lparent = "GC7F114" and lby IN ("cara2006", "silyam") and lType="Found it";
 --#9
---update logs set ldate = "2016-12-09" where lparent = "GC6X2AN" and lby IN ("dogteam", "minni09", "mirg75", "silyam") and lType="Found it";
 --#10
---update logs set ldate = "2016-12-10" where lparent = "GC6WW07" and lby IN ("silyam", "dogteam") and lType="Found it";
+update logs set ldate = "2017-12-10" where lparent = "GC7ERHH" and lby IN ("johs1988", "cara2006", "silyam", "anila65", "siljejandersen") and lType="Found it";
 
 --#13 Luciaeventet var alle på samme dag
 --update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attended";
@@ -187,7 +174,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
         QuerySQLite -query $queryresult | Out-Null
     }
     $caches = ""
-    Clear-Variable points
+    $points = 0
     
 # Finn cacher Deltager har logget på publiseringsdato, legg til User4 og antall poeng
     $sqlLoggetPublDato= 'select c.User4 from logs l inner join caches c on l.lParent = c.code where l.lType in ("Attended", "Found it") and l.lBy = "' + $deltager.lBy + '" and l.lDate = c.placeddate order by l.lDate;'
@@ -202,7 +189,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
         QuerySQLite -query $queryresult | Out-Null
     }
     $caches = ""
-    Clear-Variable points   
+    $points = 0
 
 # Finn cacher Deltager har publisert selv, legg til User4 og antall poeng
     $sqlPublSelv= "select c.User4 from poeng p inner join caches c on p.lBy = c.placedBy where c.placedBy = '" + $deltager.lBy + "';"
@@ -218,7 +205,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
         QuerySQLite -query $queryresult | Out-Null
     }
     $caches = ""
-    Clear-Variable points
+    $points = 0
 
 # Finn cacher Deltager har logget FTF på, og legg til * og redusert antall poeng på co-FTF
 
@@ -243,9 +230,7 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
         QuerySQLite -query $queryresult | Out-Null
     }
     $caches = ""
-    if ($points) {
-        Clear-Variable points  
-    }
+    $points = 0
 
 }
 
