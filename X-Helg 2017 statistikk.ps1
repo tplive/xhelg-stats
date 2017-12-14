@@ -177,6 +177,11 @@ foreach ($deltager in $resAlleDeltagere.tables.rows) {
     $points = 0
     
 # Finn cacher Deltager har logget på publiseringsdato, legg til User4 og antall poeng
+    
+    # Rett opp logger på event som har havnet på feil dato
+    $sqlAttendedEvent= 'update logs set ldate="2017-12-13" where lparent="GC7EE2E" and ltype="Attended"'
+    QuerySQLite -query $sqlAttendedEvent
+
     $sqlLoggetPublDato= 'select c.User4 from logs l inner join caches c on l.lParent = c.code where l.lType in ("Attended", "Found it") and l.lBy = "' + $deltager.lBy + '" and l.lDate = c.placeddate order by l.lDate;'
     $resLoggetPublDato = QuerySQLite -query $sqlLoggetPublDato
 
