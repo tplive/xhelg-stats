@@ -89,7 +89,7 @@ insert into poeng select placedby, null, null, null, null, null, null, null, nul
 update caches set placeddate = "2017-12-01", User4 = "[#1]" where code = "GC7E58G";
 update caches set placeddate = "2017-12-02", User4 = "[#2]" where code = "GC7ER9N";
 update caches set placeddate = "2017-12-03", User4 = "[#3]" where code = "GC7EKM1";
-update caches set placeddate = "2017-12-04", User4 = "[#4]" where code = "GC7FD4G";
+update caches set placeddate = "2017-12-05", User4 = "[#4]" where code = "GC7FD4G";
 update caches set placeddate = "2017-12-05", User4 = "[#5]" where code = "GC7FD5P";
 update caches set placeddate = "2017-12-06", User4 = "[#6]" where code = "GC7EPYZ";
 update caches set placeddate = "2017-12-07", User4 = "[#7]" where code = "GC7FAB5";
@@ -133,6 +133,9 @@ update logs set ldate = "2017-12-08" where lparent = "GC7F114" and lby IN ("cara
 --#9
 --#10
 update logs set ldate = "2017-12-10" where lparent = "GC7ERHH" and lby IN ("johs1988", "cara2006", "silyam", "anila65", "siljejandersen") and lType="Found it";
+
+--#12 GC7F8FE
+update logs set ldate = "2017-12-12" where lparent = "GC7F8FE" and lby IN ("O-K Haukland") and lType="Found it";
 
 --#13 Luciaeventet var alle på samme dag
 --update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attended";
