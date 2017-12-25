@@ -108,7 +108,7 @@ update caches set placeddate = "2017-12-19", User4 = "[#19]" where code = "GC7FH
 update caches set placeddate = "2017-12-20", User4 = "[#20]" where code = "GC7F2MM";
 update caches set placeddate = "2017-12-21", User4 = "[#21]" where code = "GC7FPC4";
 update caches set placeddate = "2017-12-22", User4 = "[#22]" where code = "GC7FPA8";
-update caches set placeddate = "2017-12-23", User4 = "[#23]" where code = "GC7FNOT";
+update caches set placeddate = "2017-12-23", User4 = "[#23]" where code = "GC7FN0T";
 update caches set placeddate = "2017-12-24", User4 = "[#24]" where code = "GC7FP4B";
 
 --Andre manuelle triks
