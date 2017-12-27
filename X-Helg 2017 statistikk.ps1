@@ -135,7 +135,7 @@ update logs set ldate = "2017-12-08" where lparent = "GC7F114" and lby IN ("cara
 update logs set ldate = "2017-12-10" where lparent = "GC7ERHH" and lby IN ("johs1988", "cara2006", "silyam", "anila65", "siljejandersen") and lType="Found it";
 
 --#12 GC7F8FE
-update logs set ldate = "2017-12-12" where lparent = "GC7F8FE" and lby IN ("O-K Haukland") and lType="Found it";
+update logs set ldate = "2017-12-12" where lparent = "GC7F8FE" and lby IN ("O-K Haukland", "cara2006", "silyam") and lType="Found it";
 
 --#13 Luciaeventet var alle på samme dag
 --update logs set ldate = "2016-12-13" where lparent = "GC6X53M" and lType="Attended";
@@ -145,6 +145,9 @@ update logs set ldate = "2017-12-12" where lparent = "GC7F8FE" and lby IN ("O-K 
 --update logs set ldate = "2016-12-15" where lparent = "GC6X260" and lby IN ("dogteam", "cara2006") and lType="Found it";
 --#16
 --update logs set ldate = "2016-12-15" where lparent = "GC6X7RN" and lby IN ("cara2006") and lType="Found it";
+
+--#22 GC7FPA8
+update logs set ldate = "2017-12-22" where lparent = "GC7FPA8" and lby IN ("silyam") and lType="Found it";
 
 '@
 
