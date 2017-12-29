@@ -149,6 +149,8 @@ update logs set ldate = "2017-12-12" where lparent = "GC7F8FE" and lby IN ("O-K 
 --#22 GC7FPA8
 update logs set ldate = "2017-12-22" where lparent = "GC7FPA8" and lby IN ("silyam") and lType="Found it";
 
+--Mangler FTF:
+--# 9, 11, 15, 19, 20, 23
 '@
 
 $n = 0
